@@ -1,0 +1,25 @@
+  /* Custom styles */
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('https://img.freepik.com/free-vector/gradient-purple-wavy-background_52683-74031.jpg?w=1060&t=st=1687233918~exp=1687234518~hmac=d736ce8f3db3d0023c4958c48285637c2adffd945519597cc1fff742a855b321');
+    background-repeat: no-repeat;
+  background-size: cover;
+  }
+  .form-container {
+    max-width: 500px;
+    margin: auto;
+  }
+  .title-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .text-center,.shortUrl{
+      font-weight: 800;
+      color: white; 
+      text-align: center;
+
+  }
