@@ -17,5 +17,5 @@ URL Shortener is a web application that allows you to shorten long URLs into sho
 
 ## Technologies Used
 
-- Python, Flask, PostgreSQL,HTML,CSS,Bootstrap
+- Python, Flask, PostgreSQL,HTML,CSS
 
