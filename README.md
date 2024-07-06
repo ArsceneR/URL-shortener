@@ -7,9 +7,8 @@ URL Shortener is a web application that allows you to shorten long URLs into sho
 1. Clone the repository:
 2. Install the required dependencies:
 3. Configure the application by updating the settings in the `config.ini` file.
-4. Run the application:
-5. Access the application in your web browser at `http://localhost:5000`.
-
+4. Run the application
+5. 
 ## Usage
 
 1. Enter the URL you want to shorten.
