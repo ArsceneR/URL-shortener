@@ -1,5 +1,5 @@
-  /* Custom styles */
-  body {
+/* Custom styles */
+body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,19 +7,48 @@
     margin: 0;
     background-image: url('https://img.freepik.com/free-vector/gradient-purple-wavy-background_52683-74031.jpg?w=1060&t=st=1687233918~exp=1687234518~hmac=d736ce8f3db3d0023c4958c48285637c2adffd945519597cc1fff742a855b321');
     background-repeat: no-repeat;
-  background-size: cover;
-  }
-  .form-container {
+    background-size: cover;
+    font-family: Arial, sans-serif; /* Adding a default font for better readability */
+}
+
+.container {
+    max-width: 800px; /* Adjusted max-width for the entire content */
+    padding: 20px;
+}
+
+.form-container {
     max-width: 500px;
     margin: auto;
-  }
-  .title-container {
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for better contrast */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for depth */
+}
+
+.title-container {
     text-align: center;
     margin-bottom: 20px;
-  }
-  .text-center,.shortUrl{
-      font-weight: 800;
-      color: white; 
-      text-align: center;
+}
 
-  }
+.text-center, .shortUrl {
+    font-weight: 800;
+    color: #333; /* Adjusted text color for better readability */
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+input[type="url"], .btn {
+    width: calc(100% - 90px); /* Adjusted input width for better alignment */
+    margin-right: 10px;
+}
+
+.shortUrl input[type="text"] {
+    width: 100%; /* Ensure the shortened URL input spans the full width */
+}
+
+/* Responsiveness adjustments */
+@media (max-width: 600px) {
+    .form-container {
+        max-width: 100%;
+    }
+}
