@@ -1,3 +1,8 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
 /* Custom styles */
 body {
     display: flex;
@@ -5,22 +10,31 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-image: url('https://img.freepik.com/free-vector/gradient-purple-wavy-background_52683-74031.jpg?w=1060&t=st=1687233918~exp=1687234518~hmac=d736ce8f3db3d0023c4958c48285637c2adffd945519597cc1fff742a855b321');
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-family: Arial, sans-serif; /* Adding a default font for better readability */
+    background: black;
+    font-family: Arial, sans-serif; 
+    color: white;
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     max-width: 800px; /* Adjusted max-width for the entire content */
-    padding: 20px;
+    padding: 50px;
 }
 
 .form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+    color:black;
+    text-align: center;
     max-width: 500px;
     margin: auto;
-    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for better contrast */
-    padding: 20px;
+    padding: 60px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for depth */
 }
@@ -30,25 +44,38 @@ body {
     margin-bottom: 20px;
 }
 
-.text-center, .shortUrl {
-    font-weight: 800;
-    color: #333; /* Adjusted text color for better readability */
-    text-align: center;
+.input-group {
+    display: flex;
+    align-items: center;
     margin-bottom: 10px;
 }
 
-input[type="url"], .btn {
-    width: calc(100% - 90px); /* Adjusted input width for better alignment */
-    margin-right: 10px;
+input[type="url"] {
+    flex: 1; /* Take up remaining space */
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #ccc;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.shortUrl {
+    gap:1em; 
+    text-align: center;
 }
 
 .shortUrl input[type="text"] {
-    width: 100%; /* Ensure the shortened URL input spans the full width */
-}
-
-/* Responsiveness adjustments */
-@media (max-width: 600px) {
-    .form-container {
-        max-width: 100%;
-    }
+    width: auto; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
 }
