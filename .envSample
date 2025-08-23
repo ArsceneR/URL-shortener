@@ -1,0 +1,10 @@
+DomainName = localhost
+PORT: 8000
+Protocol = http
+SHORT_URL_LENGTH = 10
+
+Database = db_name
+User = user
+Password = password
+Host = 127.0.0.1
+Port = 5432
