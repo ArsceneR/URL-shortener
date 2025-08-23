@@ -114,14 +114,8 @@ URL-shortener/
 - **Port 5000 in use on Mac:** Bind app to another port or follow steps here: [StackOverflow: Port 5000 in use](https://stackoverflow.com/questions/72369320/why-always-something-is-running-at-port-5000-on-my-mac)
 
 ## Security Notes
-- This app is for educational/demo purposes. For production, add input validation, HTTPS, and user authentication as needed.
+- This app is for educational/sys design demo purposes . For production, add input validation, HTTPS, and user authentication as needed.
 
-
-
-
-## Troubleshooting / Common Issues
-- **403 Forbidden:** Make sure Flask is running and you are using the correct port.
-- **Database errors:** Ensure PostgreSQL is running and credentials in `config.ini` are correct.
 
 
 - **Macboook Port 5000 Issue:** : Bind app to another port or follow steps here
