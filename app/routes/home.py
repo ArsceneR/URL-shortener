@@ -1,27 +1,11 @@
-from configparser import ConfigParser
-from flask import Flask, redirect, render_template, request
-from pg_database import PostgreDB
-from short_url_generator import URLShortener
 
-app = Flask(__name__)
-
-config = ConfigParser()
-config.read('config.ini')
-
-DOMAIN_NAME = config['MAIN']['DomainName']
-LENGTH = int(config['MAIN']['Length'])
-PROTOCOL = config['MAIN']['Protocol']
-DB_CONFIG = dict(config['DATABASE'].items())
-
-url_shortener = URLShortener(length=LENGTH)
-database = PostgreDB(DB_CONFIG)
+from flask import Blueprint, redirect, render_template, request, current_app
 
 
-@app.route('/favicon.ico')
-def favicon():
-    return '', 204 
+home_bp = Blueprint('home', __name__)
 
-@app.route('/', methods=['GET', 'POST'])
+
+@home_bp.route('/', methods=['GET', 'POST'])
 def home():
     """
     Home page.
@@ -37,23 +21,24 @@ def home():
     """
     if request.method == 'POST':
         url = request.values['fullUrl'].strip()
+        database = current_app.database
         short_url = database.check_data_exist(original=url)
         if not short_url:
-            short_url = url_shortener.shorten_url(url)
+            short_url = current_app.url_shortener.shorten_url(url)
             if not short_url:
                 result = 'Validation Failure. This may be an incorrect URL.'
             else:
                 database.add_data((short_url, url))
-                result = f"{PROTOCOL}://{DOMAIN_NAME}/{short_url}"
+                result = f"{current_app.config["PROTOCOL"]}://{current_app.config["DOMAIN_NAME"]}/{short_url}"
         else:
-            result = f"{PROTOCOL}://{DOMAIN_NAME}/{short_url}"
+            result = f"{current_app.config["PROTOCOL"]}://{current_app.config["DOMAIN_NAME"]}/{short_url}"
         return render_template('index.html', result=result)
     else:
-        database.create_table()
+        current_app.database.create_table()
         return render_template('index.html')
 
 
-@app.route('/<url>')
+@home_bp.route('/<url>')
 def url_redirect(url):
     """
     Redirect to original URL.
@@ -67,12 +52,14 @@ def url_redirect(url):
     Raises:
         None.
     """
-    result = database.check_data_exist(shorten=url)
+    result = current_app.database.check_data_exist(shorten=url)
     if result:
         return redirect(result)
     else:
         return 'PAGE DOES NOT EXIST.'
 
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+
+@home_bp.route('/favicon.ico')
+def favicon():
+    return '', 204 
