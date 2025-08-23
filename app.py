@@ -17,6 +17,10 @@ url_shortener = URLShortener(length=LENGTH)
 database = PostgreDB(DB_CONFIG)
 
 
+@app.route('/favicon.ico')
+def favicon():
+    return '', 204 
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     """
@@ -45,6 +49,7 @@ def home():
             result = f"{PROTOCOL}://{DOMAIN_NAME}/{short_url}"
         return render_template('index.html', url=url, result=result)
     else:
+        database.create_table()
         return render_template('index.html')
 
 
@@ -70,4 +75,4 @@ def url_redirect(url):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
