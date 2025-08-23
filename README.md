@@ -9,7 +9,7 @@ A simple Flask-based web application to shorten URLs, store them in a PostgreSQL
 - Easily extensible and configurable
 ## Illustration
 
-![Screenshot of the app UI](static/Screenshot%202025-06-04%20at%2012.09.19%E2%80%AFPM.png)
+![Screenshot of the app UI](app/static/Screenshot%202025-06-04%20at%2012.09.19%E2%80%AFPM.png)
 ## Requirements
 - Python 3.8+
 - PostgreSQL (running locally or remotely)
