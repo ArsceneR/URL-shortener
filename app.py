@@ -47,7 +47,7 @@ def home():
                 result = f"{PROTOCOL}://{DOMAIN_NAME}/{short_url}"
         else:
             result = f"{PROTOCOL}://{DOMAIN_NAME}/{short_url}"
-        return render_template('index.html', url=url, result=result)
+        return render_template('index.html', result=result)
     else:
         database.create_table()
         return render_template('index.html')
