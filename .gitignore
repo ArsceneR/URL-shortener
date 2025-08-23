@@ -1,4 +1,28 @@
-__pycachce__/
-*.pyc
-*.pyo
-*.pyd
+
+# macOS
+.DS_Store
+
+# Python virtual environments
+.venv/
+
+# VS Code & launch configs 
+.vscode/
+
+# PyCharm
+.idea/
+
+# Python cache files
+**/__pycache__/
+
+
+
+# SQLite database
+*.sqlite3
+
+#secrets
+.env
+
+
+#logs
+log.log
+
