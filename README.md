@@ -34,19 +34,18 @@ pip install -r requirements.txt
 ```
 
 ### 3. Configure the application
-Edit `config.ini` with your PostgreSQL credentials and app settings:
+Create & Edit `.env` with your PostgreSQL credentials and app settings:
 ```
-[MAIN]
-DomainName = 127.0.0.1:5000
-Length = 6
+DomainName = localhost
+PORT: 8000
 Protocol = http
+SHORT_URL_LENGTH = 10
 
-[DATABASE]
-host = 127.0.0.1
-database = your_db
-user = your_user
-password = your_password
-port = 5432
+Database = db_name
+User = user
+Password = password
+Host = 127.0.0.1
+Port = 5432
 ```
 
 ### 4. Start PostgreSQL
@@ -84,25 +83,31 @@ If you want to access from another device on your network, use your local IP and
 
 ## Project Structure
 ```
+
 URL-shortener/
-├── app.py                # Main Flask app
-├── pg_database.py        # PostgreSQL database logic
-├── short_url_generator.py# URL shortening logic
-├── config.ini            # App and DB configuration
-├── Pipfile / requirements.txt # Dependencies
-├── static/
-│   └── styles.css        # CSS styles
-├── templates/
-│   └── index.html        # Main HTML template
-└── README.md             # Project documentation
+├── app/                           # Application package
+│   ├── __init__.py                # App factory (create_app) lives here
+│   ├── main.py                    # Optional entry point (can also use Flask CLI)
+│   ├── routes/                    # Blueprint-based routes
+│   │   └── home.py                
+│   ├── pg_database.py             # PostgreSQL database integration
+│   ├── short_url_generator.py     # URL shortening logic
+│
+├── .envSample                     # Example environment variables file
+├── .gitignore                     # Git ignore rules
+├── requirements.txt               # Project dependencies
+├── config.py                      # Config classes (DevConfig, ProdConfig, etc.)
+├── README.md                      # Project documentation
+
+
 ```
 
 ## Customization
-- Change the short URL length in `config.ini` (`Length` parameter).
+- Change the short URL length in `.env` (`Length` parameter).
 - Update the domain or protocol as needed.
 - Add your own favicon or branding in `static/` and `templates/`.
 
-- To use a custom port, change the `port` in `app.py` or in your VS Code `launch.json`.
+- To use a custom port, change the `port` in `app.py` or in your VS Code `launch.json` or use the CLI to run the app.
 
 ## Advanced Usage
 - Containerize the application and deploy this app to Heroku, Render, or any cloud provider that supports Flask and PostgreSQL.
@@ -110,8 +115,8 @@ URL-shortener/
 
 ## Troubleshooting / Common Issues
 - **403 Forbidden:** Make sure Flask is running and you are using the correct port. Try both `127.0.0.1:5000` and `localhost:5000`.
-- **Database errors:** Ensure PostgreSQL is running and credentials in `config.ini` are correct. Try connecting with `psql` to verify.
-- **Port 5000 in use on Mac:** Bind app to another port or follow steps here: [StackOverflow: Port 5000 in use](https://stackoverflow.com/questions/72369320/why-always-something-is-running-at-port-5000-on-my-mac)
+- **Database errors:** Ensure PostgreSQL is running and credentials in the env file are correct. Try connecting with `psql` to verify.
+- **Port 5000 in use on Mac:** Bind app to another port(like 8000) or follow steps here: [StackOverflow: Port 5000 in use](https://stackoverflow.com/questions/72369320/why-always-something-is-running-at-port-5000-on-my-mac)
 
 ## Security Notes
 - This app is for educational/sys design demo purposes . For production, add input validation, HTTPS, and user authentication as needed.
