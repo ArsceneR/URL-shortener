@@ -35,9 +35,9 @@ class PostgreDB:
             cur.close()
             conn.close()
 
-    def check_data_exist(self, shorten=None, original=None):
+    def fetch_url_if_exists(self, shorten=None, original=None):
         """
-        Check if data already exists in the database.
+        fetch url data if it  exists in the database, otherwise return None .
 
         Args:
             shorten (str): Short URL to check.
@@ -47,11 +47,11 @@ class PostgreDB:
             str or None: The corresponding URL (original or shorten) if found, otherwise None.
 
         Raises:
-            Exception: If an error occurs while checking the data.
+            Exception: If an error occurs while fetching the data.
         """
         try:
-            conn = psycopg2.connect(**self.database_config)
-            cur = conn.cursor()
+            conn = psycopg2.connect(**self.database_config) # Connect to the database
+            cur = conn.cursor() # Create a cursor object for executing queries
             if shorten:
                 cur.execute('SELECT * FROM URL WHERE SHORTEN = %s',
                             (shorten,))
