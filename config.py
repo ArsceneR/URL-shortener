@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-class Config(object):
+class Config:
     DOMAIN_NAME = 'example.com'
     DEBUG = False
     
