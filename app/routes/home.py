@@ -19,10 +19,11 @@ def home():
     Raises:
         None.
     """
+    database = current_app.database
+
     if request.method == 'POST':
         url = request.values['fullUrl'].strip()
-        database = current_app.database
-        short_url = database.check_data_exist(original=url)
+        short_url = database.fetch_url_if_exists(original=url)
         if not short_url:
             short_url = current_app.url_shortener.shorten_url(url)
             if not short_url:
@@ -34,7 +35,7 @@ def home():
             result = f"{current_app.config["PROTOCOL"]}://{current_app.config["DOMAIN_NAME"]}/{short_url}"
         return render_template('index.html', result=result)
     else:
-        current_app.database.create_table()
+        database.create_table()
         return render_template('index.html')
 
 
@@ -52,7 +53,7 @@ def url_redirect(url):
     Raises:
         None.
     """
-    result = current_app.database.check_data_exist(shorten=url)
+    result = current_app.database.fetch_url_if_exists(shorten=url)
     if result:
         return redirect(result)
     else:
